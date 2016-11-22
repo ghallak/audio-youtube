@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Proj</string>
+    <string name="search">Search</string>
+    <string name="play_song">Play song</string>
+    <string name="add_to_playlist">Add to playlist</string>
+    <string name="title_top">Top fragment</string>
+    <string name="title_history">History</string>
+    <string name="open_drawer">Open drawer</string>
+    <string name="close_drawer">Close drawer</string>
+
+    <string-array name="history_items">
+        <item>first item</item>
+        <item>second item</item>
+    </string-array>
+
+    <string-array name="drawer_titles">
+        <item>Playlists</item>
+        <item>History</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
