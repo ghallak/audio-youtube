@@ -1,4 +1,4 @@
-package com.ss.proj;
+package com.ss.proj.utils;
 
 import org.apache.commons.io.IOUtils;
 

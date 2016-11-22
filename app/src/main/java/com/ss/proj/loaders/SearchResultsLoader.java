@@ -1,4 +1,4 @@
-package com.ss.proj;
+package com.ss.proj.loaders;
 
 import android.content.AsyncTaskLoader;
 import android.content.Context;

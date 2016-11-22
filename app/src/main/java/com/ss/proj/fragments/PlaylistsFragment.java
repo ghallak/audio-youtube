@@ -1,22 +1,16 @@
-package com.ss.proj;
+package com.ss.proj.fragments;
 
 import android.app.ListFragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 
-public class HistoryFragment extends ListFragment {
+public class PlaylistsFragment extends ListFragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
-		ArrayAdapter<String> adapter = new ArrayAdapter<>(
-				inflater.getContext(),
-				android.R.layout.simple_list_item_1,
-				getResources().getStringArray(R.array.history_items));
-		setListAdapter(adapter);
 		return super.onCreateView(inflater, container, savedInstanceState);
 	}
 }

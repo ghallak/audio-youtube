@@ -1,4 +1,4 @@
-package com.ss.proj;
+package com.ss.proj.activities;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -15,6 +15,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+
+import com.ss.proj.R;
+import com.ss.proj.fragments.HistoryFragment;
+import com.ss.proj.fragments.TopFragment;
 
 public class MainActivity extends Activity {
 

@@ -1,4 +1,4 @@
-package com.ss.proj;
+package com.ss.proj.activities;
 
 import android.app.ListActivity;
 import android.app.LoaderManager;
@@ -9,6 +9,9 @@ import android.widget.ListView;
 import android.widget.PopupMenu;
 
 import com.google.api.services.youtube.model.SearchResult;
+import com.ss.proj.R;
+import com.ss.proj.adapters.SearchResultAdapter;
+import com.ss.proj.loaders.SearchResultsLoader;
 
 import java.util.ArrayList;
 import java.util.List;

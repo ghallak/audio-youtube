@@ -1,6 +1,8 @@
-package com.ss.proj;
+package com.ss.proj.network;
 
 import android.content.Intent;
+
+import com.ss.proj.utils.YouTubeParser;
 
 import java.io.IOException;
 import java.net.URL;

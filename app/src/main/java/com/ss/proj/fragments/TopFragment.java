@@ -1,4 +1,4 @@
-package com.ss.proj;
+package com.ss.proj.fragments;
 
 
 import android.app.Fragment;
@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.ss.proj.R;
 
 public class TopFragment extends Fragment {
 

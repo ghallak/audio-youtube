@@ -1,4 +1,4 @@
-package com.ss.proj;
+package com.ss.proj.network;
 
 import android.app.IntentService;
 import android.content.Context;
