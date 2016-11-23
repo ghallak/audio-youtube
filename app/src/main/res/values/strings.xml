@@ -7,6 +7,8 @@
     <string name="title_history">History</string>
     <string name="open_drawer">Open drawer</string>
     <string name="close_drawer">Close drawer</string>
+    <string name="search_title">Search</string>
+    <string name="search_hint">Search Here</string>
 
     <string-array name="history_items">
         <item>first item</item>

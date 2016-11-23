@@ -19,7 +19,7 @@ public class YouTubeParser {
 
     private final String pageSource;
 
-    YouTubeParser(String videoId) throws IOException {
+    public YouTubeParser(String videoId) throws IOException {
         try {
             URL url = new URL(DOMAIN + WATCH_CMD + videoId);
             InputStream inputStream = url.openStream();
