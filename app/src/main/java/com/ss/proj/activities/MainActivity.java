@@ -5,24 +5,21 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.app.SearchManager;
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SearchView;
 
 import com.ss.proj.R;
 import com.ss.proj.fragments.HistoryFragment;
-import com.ss.proj.fragments.TopFragment;
+import com.ss.proj.fragments.NowPlayingFragment;
 
 public class MainActivity extends Activity {
 
@@ -106,8 +103,8 @@ public class MainActivity extends Activity {
 	}
 
 	public void onSearch(View view) {
-		Intent intent = new Intent(this, ListSearchResultsActivity.class);
-		EditText searchQuery = (EditText) findViewById(R.id.search);
+		//Intent intent = new Intent(this, ListSearchResultsActivity.class);
+		//EditText searchQuery = (EditText) findViewById(R.id.search);
 		//intent.putExtra(ListSearchResultsActivity.EXTRA_SEARCH_QUERY, searchQuery.getText().toString());
 		//startActivity(intent);
 	}
@@ -126,7 +123,7 @@ public class MainActivity extends Activity {
 				fragment = new HistoryFragment();
 				break;
 			default:
-				fragment = new TopFragment();
+				fragment = new NowPlayingFragment();
 		}
 		FragmentTransaction ft = getFragmentManager().beginTransaction();
 		ft.replace(R.id.content_frame, fragment);
