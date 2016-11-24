@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.ss.proj">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -12,31 +12,27 @@
         android:theme="@style/AppTheme">
         <activity android:name=".activities.MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-            <meta-data
-                android:name="android.app.default_searchable"
-                android:value=".activities.ListSearchResultsActivity"/>
+            <meta-data android:name="android.app.default_searchable"
+                       android:value=".activities.ListSearchResultsActivity" />
         </activity>
         <activity
             android:name=".activities.ListSearchResultsActivity"
             android:launchMode="singleTop"
             android:parentActivityName=".activities.MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.SEARCH"/>
+                <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
-
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable"/>
+            <meta-data android:name="android.app.searchable"
+                       android:resource="@xml/searchable" />
         </activity>
 
         <service
-            android:name=".network.YouTubeDownloaderService"
-            android:exported="false">
+            android:name=".services.YouTubeDownloaderService"
+            android:exported="false" >
         </service>
 
         <activity android:name=".activities.AddToPlaylistActivity">
