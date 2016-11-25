@@ -18,8 +18,8 @@ import android.widget.ListView;
 import android.widget.SearchView;
 
 import com.ss.proj.R;
-import com.ss.proj.fragments.HistoryFragment;
 import com.ss.proj.fragments.NowPlayingFragment;
+import com.ss.proj.fragments.PlaylistsFragment;
 
 public class MainActivity extends Activity {
 
@@ -102,13 +102,6 @@ public class MainActivity extends Activity {
 		return true;
 	}
 
-	public void onSearch(View view) {
-		//Intent intent = new Intent(this, ListSearchResultsActivity.class);
-		//EditText searchQuery = (EditText) findViewById(R.id.search);
-		//intent.putExtra(ListSearchResultsActivity.EXTRA_SEARCH_QUERY, searchQuery.getText().toString());
-		//startActivity(intent);
-	}
-
 	private class DrawerItemClickListener implements ListView.OnItemClickListener {
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -120,7 +113,7 @@ public class MainActivity extends Activity {
 		Fragment fragment;
 		switch (position) {
 			case 1:
-				fragment = new HistoryFragment();
+				fragment = new PlaylistsFragment();
 				break;
 			default:
 				fragment = new NowPlayingFragment();

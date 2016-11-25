@@ -102,6 +102,18 @@ public class ListSearchResultsActivity extends ListActivity
 	public void showPopup(View view) {
 		PopupMenu popup = new PopupMenu(this, view);
 		popup.inflate(R.menu.seach_result_menu);
+		popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+			@Override
+			public boolean onMenuItemClick(MenuItem menuItem) {
+				switch (menuItem.getItemId()) {
+					case R.id.add_to_playlist:
+						Intent intent = new Intent(ListSearchResultsActivity.this, AddToPlaylistActivity.class);
+						startActivity(intent);
+						break;
+				}
+				return true;
+			}
+		});
 		popup.show();
 	}
 }
