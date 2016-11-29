@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Proj</string>
     <string name="search">Search</string>
-    <string name="play_song">Play song</string>
+    <string name="play_song">Play</string>
     <string name="add_to_playlist">Add to playlist</string>
     <string name="title_top">Top fragment</string>
     <string name="title_history">History</string>
@@ -10,6 +10,8 @@
     <string name="search_title">Search</string>
     <string name="search_hint">Search Here</string>"
     <string name="create_new_playlist">Create new playlist</string>
+    <string name="rename">Rename</string>
+    <string name="delete_playlist">Delete playlist</string>
 
     <string-array name="history_items">
         <item>first item</item>

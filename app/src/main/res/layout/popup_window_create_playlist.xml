@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/popup_menu_create_playlist"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/darker_gray">
+
+    <Button
+        android:id="@+id/popup_menu_ok_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:text="@android:string/ok"/>
+
+    <Button
+        android:id="@+id/popup_menu_cancel_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/popup_menu_ok_button"
+        android:layout_marginEnd="14dp"
+        android:layout_toStartOf="@+id/popup_menu_ok_button"
+        android:text="@android:string/cancel"/>
+
+    <TextView
+        android:id="@+id/playlist_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:fontFamily="sans-serif"
+        android:text="Enter the playlist name"
+        android:textAppearance="@android:style/TextAppearance.Material.Large"/>
+
+    <EditText
+        android:id="@+id/playlist_name_edit_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/playlist_name"
+        android:ems="10"
+        android:inputType="textPersonName"/>
+
+</RelativeLayout>
