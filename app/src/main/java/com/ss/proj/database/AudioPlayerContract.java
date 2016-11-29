@@ -10,9 +10,6 @@ public final class AudioPlayerContract {
 		public static final String TABLE_NAME = "audio_tracks";
 		public static final String COLUMN_NAME_VIDEO_ID = "video_id";
 		public static final String COLUMN_NAME_TITLE = "title";
-		public static final String COLUMN_NAME_TIMES_PLAYED = "times_played";
-		public static final String COLUMN_NAME_LENGTH = "length";
-		public static final String COLUMN_NAME_FAVORITE = "favorite";
 	}
 
 	public static class PlaylistEntry implements BaseColumns {

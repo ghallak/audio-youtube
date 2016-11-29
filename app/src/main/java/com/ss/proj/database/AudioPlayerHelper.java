@@ -10,18 +10,13 @@ public class AudioPlayerHelper extends SQLiteOpenHelper {
 	public static final String DATABASE_NAME = "AudioPlayer.db";
 
 	private static final String TEXT_TYPE = "TEXT";
-	private static final String INTEGER_TYPE = "";
-	private static final String BOOLEAN_TYPE = "";
+	private static final String INTEGER_TYPE = "INTEGER";
 	private static final String COMMA_SEP = ",";
 	private static final String SQL_CREATE_AUDIO_TRACKS_TABLE =
 			"CREATE TABLE " + AudioPlayerContract.AudioTrackEntry.TABLE_NAME + " (" +
 					AudioPlayerContract.AudioTrackEntry._ID + " INTEGER PRIMARY KEY," +
 					AudioPlayerContract.AudioTrackEntry.COLUMN_NAME_VIDEO_ID + TEXT_TYPE + COMMA_SEP +
-					AudioPlayerContract.AudioTrackEntry.COLUMN_NAME_TITLE + TEXT_TYPE + COMMA_SEP +
-					AudioPlayerContract.AudioTrackEntry.COLUMN_NAME_TIMES_PLAYED + INTEGER_TYPE + COMMA_SEP +
-					AudioPlayerContract.AudioTrackEntry.COLUMN_NAME_LENGTH + INTEGER_TYPE + COMMA_SEP +
-					AudioPlayerContract.AudioTrackEntry.COLUMN_NAME_TITLE + TEXT_TYPE + COMMA_SEP +
-					AudioPlayerContract.AudioTrackEntry.COLUMN_NAME_FAVORITE + BOOLEAN_TYPE + " )";
+					AudioPlayerContract.AudioTrackEntry.COLUMN_NAME_TITLE + TEXT_TYPE + " )";
 	private static final String SQL_CREATE_PLAYLISTS_TABLE =
 			"CREATE TABLE" + AudioPlayerContract.PlaylistEntry.TABLE_NAME + " (" +
 					AudioPlayerContract.PlaylistEntry._ID + "INTEGER PRIMARY KEY," +

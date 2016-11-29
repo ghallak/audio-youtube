@@ -11,6 +11,8 @@ import com.ss.proj.fragments.PlaylistsFragment;
 
 public class AddToPlaylistActivity extends Activity {
 
+	public static final String EXTRA_TRACK = "com.ss.proj.activities.track";
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

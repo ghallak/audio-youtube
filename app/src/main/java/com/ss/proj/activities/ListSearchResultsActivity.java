@@ -10,9 +10,7 @@ import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ListView;
-import android.widget.PopupMenu;
 import android.widget.SearchView;
 
 import com.google.api.services.youtube.model.SearchResult;
@@ -73,12 +71,6 @@ public class ListSearchResultsActivity extends ListActivity
 	}
 
 	@Override
-	protected void onListItemClick(ListView list, View view, int position, long id) {
-		super.onListItemClick(list, view, position, id);
-		// TODO: handle clicking
-	}
-
-	@Override
 	public Loader<List<SearchResult>> onCreateLoader(int i, Bundle bundle) {
 		return new SearchResultsLoader(this, query);
 	}
@@ -97,23 +89,5 @@ public class ListSearchResultsActivity extends ListActivity
 	@Override
 	public void onLoaderReset(Loader<List<SearchResult>> searchLoader) {
 
-	}
-
-	public void showPopup(View view) {
-		PopupMenu popup = new PopupMenu(this, view);
-		popup.inflate(R.menu.seach_result_menu);
-		popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-			@Override
-			public boolean onMenuItemClick(MenuItem menuItem) {
-				switch (menuItem.getItemId()) {
-					case R.id.add_to_playlist:
-						Intent intent = new Intent(ListSearchResultsActivity.this, AddToPlaylistActivity.class);
-						startActivity(intent);
-						break;
-				}
-				return true;
-			}
-		});
-		popup.show();
 	}
 }

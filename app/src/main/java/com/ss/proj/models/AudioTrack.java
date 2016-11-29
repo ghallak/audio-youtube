@@ -7,9 +7,8 @@ public class AudioTrack implements Parcelable {
 
 	private String videoId;
 	private String title;
-	private int timesPlayed;
-	private int length;
-	private boolean favorite;
+
+	public AudioTrack() { }
 
 	public String getVideoId() {
 		return videoId;
@@ -19,16 +18,12 @@ public class AudioTrack implements Parcelable {
 		return title;
 	}
 
-	public int getTimesPlayed() {
-		return timesPlayed;
+	public void setVideoId(String videoId) {
+		this.videoId = videoId;
 	}
 
-	public int getLength() {
-		return length;
-	}
-
-	public boolean isFavorite() {
-		return favorite;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	@Override
@@ -40,9 +35,6 @@ public class AudioTrack implements Parcelable {
 	public void writeToParcel(Parcel out, int flags) {
 		out.writeString(videoId);
 		out.writeString(title);
-		out.writeInt(timesPlayed);
-		out.writeInt(length);
-		out.writeByte((byte) (favorite ? 1 : 0));
 	}
 
 	public static final Parcelable.Creator<AudioTrack> CREATOR
@@ -59,8 +51,5 @@ public class AudioTrack implements Parcelable {
 	private AudioTrack(Parcel in) {
 		videoId = in.readString();
 		title = in.readString();
-		timesPlayed = in.readInt();
-		length = in.readInt();
-		favorite = in.readByte() != 0;
 	}
 }
