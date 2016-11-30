@@ -12,6 +12,8 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.ss.proj.R;
+import com.ss.proj.activities.AddToPlaylistActivity;
+import com.ss.proj.activities.MainActivity;
 import com.ss.proj.database.AudioPlayerContract.PlaylistEntry;
 
 public class PlaylistCursorAdapter extends CursorAdapter {
@@ -26,7 +28,7 @@ public class PlaylistCursorAdapter extends CursorAdapter {
 	}
 
 	@Override
-	public void bindView(View view, Context context, Cursor cursor) {
+	public void bindView(View view, final Context context, Cursor cursor) {
 		final int playlistId = cursor.getInt(cursor.getColumnIndexOrThrow(PlaylistEntry._ID));
 		String playlistTitle =
 				cursor.getString(cursor.getColumnIndexOrThrow(PlaylistEntry.COLUMN_NAME_TITLE));
@@ -40,6 +42,13 @@ public class PlaylistCursorAdapter extends CursorAdapter {
 			@Override
 			public void onClick(View view) {
 				// TODO: this function should open a new Activity or Fragment to display the contents of the playlist
+				if (context instanceof MainActivity) {
+					System.out.println("main activity");
+				} else if (context instanceof AddToPlaylistActivity) {
+					((AddToPlaylistActivity) context).addTrackToPlaylist(playlistId);
+				} else {
+					// TODO: log some error here
+				}
 			}
 		});
 		optionsMenu.setOnClickListener(new View.OnClickListener() {

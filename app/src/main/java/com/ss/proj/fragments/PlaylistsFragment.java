@@ -49,7 +49,8 @@ public class PlaylistsFragment extends ListFragment {
 		if (getActivity() instanceof MainActivity) {
 
 		} else if (getActivity() instanceof AddToPlaylistActivity) {
-
+			// TODO: check if this id is the id I want in the table. Check that by ordering the elements for example
+			((AddToPlaylistActivity) getActivity()).addTrackToPlaylist(id);
 		}
 	}
 
@@ -61,4 +62,6 @@ public class PlaylistsFragment extends ListFragment {
 		                            null, null, null, null, null);
 		adapter.changeCursor(newCursor);
 	}
+
+
 }

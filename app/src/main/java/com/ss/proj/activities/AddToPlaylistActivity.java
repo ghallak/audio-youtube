@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -17,9 +18,14 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
 import com.ss.proj.R;
+import com.ss.proj.database.AudioPlayerContract.AudioTrackEntry;
+import com.ss.proj.database.AudioPlayerContract.PlaylistAudioTrackEntry;
 import com.ss.proj.database.AudioPlayerContract.PlaylistEntry;
 import com.ss.proj.database.AudioPlayerHelper;
 import com.ss.proj.fragments.PlaylistsFragment;
+import com.ss.proj.models.AudioTrack;
+
+;
 
 public class AddToPlaylistActivity extends Activity {
 
@@ -55,6 +61,31 @@ public class AddToPlaylistActivity extends Activity {
 				return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	public void addTrackToPlaylist(long playlistId) {
+		Intent intent = getIntent();
+		AudioTrack track = intent.getParcelableExtra(EXTRA_TRACK);
+
+		SQLiteDatabase db = helper.getWritableDatabase();
+
+		// insert the track in the tracks table
+		// TODO: don't insert if it's already there
+		ContentValues trackValues = new ContentValues();
+		trackValues.put(AudioTrackEntry.COLUMN_NAME_VIDEO_ID, track.getVideoId());
+		trackValues.put(AudioTrackEntry.COLUMN_NAME_TITLE, track.getTitle());
+		long trackId = db.insert(AudioTrackEntry.TABLE_NAME, null, trackValues);
+
+		// insert the track in the junction table
+		// TODO: don't insert if it's already there
+		ContentValues junctionsValues = new ContentValues();
+		junctionsValues.put(PlaylistAudioTrackEntry.COLUMN_NAME_AUDIO_ID, trackId);
+		junctionsValues.put(PlaylistAudioTrackEntry.COLUMN_NAME_PLAYLIST_ID, playlistId);
+		db.insert(PlaylistAudioTrackEntry.TABLE_NAME, null, junctionsValues);
+
+		db.close();
+
+		finish();
 	}
 
 	public void onClickNewPlaylist(View view) {
