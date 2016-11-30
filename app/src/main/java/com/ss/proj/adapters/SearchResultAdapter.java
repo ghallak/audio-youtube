@@ -94,7 +94,7 @@ public class SearchResultAdapter extends ArrayAdapter<SearchResult> {
 	private void addTrackToPlaylist(SearchResult result) {
 		// TODO: create constructor to convert SearchResult object to AudioTrack
 		AudioTrack track = new AudioTrack();
-		track.setTitle(result.getId().getVideoId());
+		track.setVideoId(result.getId().getVideoId());
 		track.setTitle(result.getSnippet().getTitle());
 
 		Intent intent = new Intent(getContext(), AddToPlaylistActivity.class);
