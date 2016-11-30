@@ -47,6 +47,8 @@
 
         <activity android:name=".activities.AddToPlaylistActivity">
         </activity>
+        <activity android:name=".activities.AudioTracksListActivity">
+        </activity>
     </application>
 
 </manifest>

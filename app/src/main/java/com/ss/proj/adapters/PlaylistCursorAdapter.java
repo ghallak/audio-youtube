@@ -1,6 +1,7 @@
 package com.ss.proj.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import com.ss.proj.R;
 import com.ss.proj.activities.AddToPlaylistActivity;
+import com.ss.proj.activities.AudioTracksListActivity;
 import com.ss.proj.activities.MainActivity;
 import com.ss.proj.database.AudioPlayerContract.PlaylistEntry;
 
@@ -43,8 +45,11 @@ public class PlaylistCursorAdapter extends CursorAdapter {
 			public void onClick(View view) {
 				// TODO: this function should open a new Activity or Fragment to display the contents of the playlist
 				if (context instanceof MainActivity) {
-					System.out.println("main activity");
+					Intent intent = new Intent(context, AudioTracksListActivity.class);
+					intent.putExtra(AudioTracksListActivity.EXTRA_PLAYLIST_ID, playlistId);
+					context.startActivity(intent);
 				} else if (context instanceof AddToPlaylistActivity) {
+					// TODO: check if I can do this by sending new intent to the activity
 					((AddToPlaylistActivity) context).addTrackToPlaylist(playlistId);
 				} else {
 					// TODO: log some error here

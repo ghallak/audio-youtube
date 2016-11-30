@@ -7,10 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 
-import com.ss.proj.activities.AddToPlaylistActivity;
-import com.ss.proj.activities.MainActivity;
 import com.ss.proj.adapters.PlaylistCursorAdapter;
 import com.ss.proj.database.AudioPlayerContract.PlaylistEntry;
 import com.ss.proj.database.AudioPlayerHelper;
@@ -41,17 +38,6 @@ public class PlaylistsFragment extends ListFragment {
 		                         null, null, null, null, null);
 		PlaylistCursorAdapter adapter = new PlaylistCursorAdapter(getActivity(), cursor);
 		setListAdapter(adapter);
-	}
-
-	@Override
-	public void onListItemClick(ListView l, View v, int position, long id) {
-		super.onListItemClick(l, v, position, id);
-		if (getActivity() instanceof MainActivity) {
-
-		} else if (getActivity() instanceof AddToPlaylistActivity) {
-			// TODO: check if this id is the id I want in the table. Check that by ordering the elements for example
-			((AddToPlaylistActivity) getActivity()).addTrackToPlaylist(id);
-		}
 	}
 
 	public void refreshList() {
