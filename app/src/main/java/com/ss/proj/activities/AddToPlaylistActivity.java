@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -16,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.Toast;
 
 import com.ss.proj.R;
 import com.ss.proj.database.AudioPlayerContract.AudioTrackEntry;
@@ -25,13 +27,12 @@ import com.ss.proj.database.AudioPlayerHelper;
 import com.ss.proj.fragments.PlaylistsFragment;
 import com.ss.proj.models.AudioTrack;
 
-;
-
 public class AddToPlaylistActivity extends Activity {
 
 	public static final String EXTRA_TRACK = "com.ss.proj.activities.track";
 
-	AudioPlayerHelper helper;
+	private AudioPlayerHelper helper;
+	private SQLiteDatabase db;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,7 @@ public class AddToPlaylistActivity extends Activity {
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 
 		helper = new AudioPlayerHelper(this);
+		db = helper.getWritableDatabase();
 	}
 
 	@Override
@@ -67,25 +69,57 @@ public class AddToPlaylistActivity extends Activity {
 		Intent intent = getIntent();
 		AudioTrack track = intent.getParcelableExtra(EXTRA_TRACK);
 
-		SQLiteDatabase db = helper.getWritableDatabase();
-
-		// insert the track in the tracks table
-		// TODO: don't insert if it's already there
-		ContentValues trackValues = new ContentValues();
-		trackValues.put(AudioTrackEntry.COLUMN_NAME_VIDEO_ID, track.getVideoId());
-		trackValues.put(AudioTrackEntry.COLUMN_NAME_TITLE, track.getTitle());
-		long trackId = db.insert(AudioTrackEntry.TABLE_NAME, null, trackValues);
-
-		// insert the track in the junction table
-		// TODO: don't insert if it's already there
-		ContentValues junctionsValues = new ContentValues();
-		junctionsValues.put(PlaylistAudioTrackEntry.COLUMN_NAME_AUDIO_ID, trackId);
-		junctionsValues.put(PlaylistAudioTrackEntry.COLUMN_NAME_PLAYLIST_ID, playlistId);
-		db.insert(PlaylistAudioTrackEntry.TABLE_NAME, null, junctionsValues);
-
-		db.close();
+		long trackId = insertTrackInDatabase(track);
+		insertTrackInPlaylist(playlistId, trackId);
 
 		finish();
+	}
+
+	private long insertTrackInDatabase(AudioTrack track) {
+		// query the existence of the track in the tracks' table
+		Cursor cursor = db.query(
+				AudioTrackEntry.TABLE_NAME,
+				new String[]{AudioTrackEntry._ID, AudioTrackEntry.COLUMN_NAME_VIDEO_ID},
+				AudioTrackEntry.COLUMN_NAME_VIDEO_ID + " = ?",
+				new String[]{track.getVideoId()},
+				null, null, null);
+		long trackId;
+		if (cursor.moveToFirst()) {
+			trackId = cursor.getInt(cursor.getColumnIndexOrThrow(AudioTrackEntry._ID));
+		} else {
+			// insert the track in the tracks' table
+			ContentValues values = new ContentValues();
+			values.put(AudioTrackEntry.COLUMN_NAME_VIDEO_ID, track.getVideoId());
+			values.put(AudioTrackEntry.COLUMN_NAME_TITLE, track.getTitle());
+			trackId = db.insert(AudioTrackEntry.TABLE_NAME, null, values);
+		}
+		cursor.close();
+
+		return trackId;
+	}
+
+	private void insertTrackInPlaylist(long playlistId, long trackId) {
+		// query the existence of the track in the playlist
+		Cursor cursor = db.query(
+				PlaylistAudioTrackEntry.TABLE_NAME,
+				null,
+				PlaylistAudioTrackEntry.COLUMN_NAME_AUDIO_ID + " = ? AND " +
+						PlaylistAudioTrackEntry.COLUMN_NAME_PLAYLIST_ID + " = ?",
+				new String[]{Long.toString(trackId), Long.toString(playlistId)},
+				null, null, null);
+		if (!cursor.moveToFirst()) {
+			// insert the track in the junction table
+			ContentValues values = new ContentValues();
+			values.put(PlaylistAudioTrackEntry.COLUMN_NAME_AUDIO_ID, trackId);
+			values.put(PlaylistAudioTrackEntry.COLUMN_NAME_PLAYLIST_ID, playlistId);
+			db.insert(PlaylistAudioTrackEntry.TABLE_NAME, null, values);
+		} else {
+			Toast toast = Toast.makeText(this,
+			                             getResources().getText(R.string.track_already_exist),
+			                             Toast.LENGTH_SHORT);
+			toast.show();
+		}
+		cursor.close();
 	}
 
 	public void onClickNewPlaylist(View view) {
