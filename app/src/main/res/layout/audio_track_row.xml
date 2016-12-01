@@ -6,12 +6,19 @@
 
     <TextView
         android:id="@+id/audio_track_row_title"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:paddingBottom="@dimen/text_margin"
         android:paddingEnd="@dimen/text_margin"
         android:paddingStart="@dimen/text_margin"
         android:paddingTop="@dimen/text_margin"
         android:textAppearance="@android:style/TextAppearance.Material.Medium"/>
+
+    <ImageButton
+        android:id="@+id/audio_track_row_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_menu_more"/>
 
 </LinearLayout>

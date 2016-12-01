@@ -12,6 +12,9 @@
     <string name="create_new_playlist">Create new playlist</string>
     <string name="rename">Rename</string>
     <string name="delete_playlist">Delete playlist</string>
+    <string name="add_to_another_playlist">Add to another playlist</string>
+    <string name="remove_from_playlist">Remove from playlist</string>
+    <string name="track_already_exist">Track already exists in this playlist</string>
 
     <string-array name="history_items">
         <item>first item</item>
