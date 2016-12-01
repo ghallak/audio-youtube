@@ -32,7 +32,7 @@ public class PlaylistCursorAdapter extends CursorAdapter {
 	@Override
 	public void bindView(View view, final Context context, Cursor cursor) {
 		final int playlistId = cursor.getInt(cursor.getColumnIndexOrThrow(PlaylistEntry._ID));
-		String playlistTitle =
+		final String playlistTitle =
 				cursor.getString(cursor.getColumnIndexOrThrow(PlaylistEntry.COLUMN_NAME_TITLE));
 
 		TextView playlistTitleTextView = (TextView) view.findViewById(R.id.playlist_row_title);
@@ -43,10 +43,10 @@ public class PlaylistCursorAdapter extends CursorAdapter {
 		playlistTitleTextView.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				// TODO: this function should open a new Activity or Fragment to display the contents of the playlist
 				if (context instanceof MainActivity) {
 					Intent intent = new Intent(context, AudioTracksListActivity.class);
 					intent.putExtra(AudioTracksListActivity.EXTRA_PLAYLIST_ID, playlistId);
+					intent.putExtra(AudioTracksListActivity.EXTRA_PLAYLIST_TITLE, playlistTitle);
 					context.startActivity(intent);
 				} else if (context instanceof AddToPlaylistActivity) {
 					// TODO: check if I can do this by sending new intent to the activity
@@ -89,6 +89,7 @@ public class PlaylistCursorAdapter extends CursorAdapter {
 	private void renamePlaylist(int playlistId) {
 		// TODO: implement this function
 		// TODO: this function should create a popup window to enter the new name
+		// TODO: usr dialog https://developer.android.com/guide/topics/ui/dialogs.html
 	}
 
 	private void deletePlaylist(int playlistId) {
